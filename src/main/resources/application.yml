@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: test
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8

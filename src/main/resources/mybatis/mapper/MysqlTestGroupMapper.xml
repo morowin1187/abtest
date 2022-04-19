@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aiccj.abtest.mapper.TestGroupMapper">
+  <resultMap id="BaseResultMap" type="TestGroup">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="layer" jdbcType="INTEGER" property="layer" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="split_flow_num" jdbcType="INTEGER" property="splitFlowNum" />
+    <result column="directional" jdbcType="TINYINT" property="directional" />
+    <result column="in_logic" jdbcType="VARCHAR" property="inLogic" />
+    <result column="in_params" jdbcType="VARCHAR" property="inParams" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="plan_end_date" jdbcType="TIMESTAMP" property="planEndDate" />
+    <result column="module_id" jdbcType="BIGINT" property="moduleId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="shunt_id_type" jdbcType="VARCHAR" property="shuntIdType" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, layer, `status`, split_flow_num, directional, in_logic, in_params, start_date, 
+    end_date, plan_end_date, module_id, description, shunt_id_type, `type`, `source`, 
+    creator, editor, created_at, updated_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from test_group
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from test_group
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.aiccj.abtest.model.TestGroup" useGeneratedKeys="true">
+    insert into test_group (`name`, layer, `status`, 
+      split_flow_num, directional, in_logic, 
+      in_params, start_date, end_date, 
+      plan_end_date, module_id, description, 
+      shunt_id_type, `type`, `source`, 
+      creator, editor, created_at, 
+      updated_at)
+    values (#{name,jdbcType=VARCHAR}, #{layer,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{splitFlowNum,jdbcType=INTEGER}, #{directional,jdbcType=TINYINT}, #{inLogic,jdbcType=VARCHAR}, 
+      #{inParams,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{planEndDate,jdbcType=TIMESTAMP}, #{moduleId,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, 
+      #{shuntIdType,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{source,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{editor,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.aiccj.abtest.model.TestGroup" useGeneratedKeys="true">
+    insert into test_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="layer != null">
+        layer,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="splitFlowNum != null">
+        split_flow_num,
+      </if>
+      <if test="directional != null">
+        directional,
+      </if>
+      <if test="inLogic != null">
+        in_logic,
+      </if>
+      <if test="inParams != null">
+        in_params,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="planEndDate != null">
+        plan_end_date,
+      </if>
+      <if test="moduleId != null">
+        module_id,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="shuntIdType != null">
+        shunt_id_type,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="source != null">
+        `source`,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="editor != null">
+        editor,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="layer != null">
+        #{layer,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="splitFlowNum != null">
+        #{splitFlowNum,jdbcType=INTEGER},
+      </if>
+      <if test="directional != null">
+        #{directional,jdbcType=TINYINT},
+      </if>
+      <if test="inLogic != null">
+        #{inLogic,jdbcType=VARCHAR},
+      </if>
+      <if test="inParams != null">
+        #{inParams,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndDate != null">
+        #{planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moduleId != null">
+        #{moduleId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="shuntIdType != null">
+        #{shuntIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="editor != null">
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aiccj.abtest.model.TestGroup">
+    update test_group
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="layer != null">
+        layer = #{layer,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="splitFlowNum != null">
+        split_flow_num = #{splitFlowNum,jdbcType=INTEGER},
+      </if>
+      <if test="directional != null">
+        directional = #{directional,jdbcType=TINYINT},
+      </if>
+      <if test="inLogic != null">
+        in_logic = #{inLogic,jdbcType=VARCHAR},
+      </if>
+      <if test="inParams != null">
+        in_params = #{inParams,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planEndDate != null">
+        plan_end_date = #{planEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moduleId != null">
+        module_id = #{moduleId,jdbcType=BIGINT},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="shuntIdType != null">
+        shunt_id_type = #{shuntIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="source != null">
+        `source` = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="editor != null">
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aiccj.abtest.model.TestGroup">
+    update test_group
+    set `name` = #{name,jdbcType=VARCHAR},
+      layer = #{layer,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=VARCHAR},
+      split_flow_num = #{splitFlowNum,jdbcType=INTEGER},
+      directional = #{directional,jdbcType=TINYINT},
+      in_logic = #{inLogic,jdbcType=VARCHAR},
+      in_params = #{inParams,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      plan_end_date = #{planEndDate,jdbcType=TIMESTAMP},
+      module_id = #{moduleId,jdbcType=BIGINT},
+      description = #{description,jdbcType=VARCHAR},
+      shunt_id_type = #{shuntIdType,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=TINYINT},
+      `source` = #{source,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      editor = #{editor,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="finds" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from test_group
+    <include refid="listWhere"/>
+    order by id desc
+    limit #{pageIndex}, #{limit}
+  </select>
+
+  <select id="findCount" resultType="long">
+    select count(1) from test_group
+  </select>
+
+  <sql id="listWhere">
+    where 1=1
+  </sql>
+
+</mapper>

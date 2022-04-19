@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aiccj.abtest.mapper.UserMapper">
+    <resultMap id="User" type="User">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="email" property="email"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="role" property="role"/>
+        <result column="login_type" property="loginType"/>
+    </resultMap>
+
+    <sql id="findSelect">
+        select `id` ,
+                `name` ,
+            `email` ,
+            `phone` ,
+            `role` ,
+            `login_type` ,
+            `password`
+        from `user` usr
+    </sql>
+
+    <select id="loadByEmail" resultMap="User">
+        <include refid="findSelect"/>
+        where usr.email = #{usr.email}
+        limit 1
+    </select>
+
+    <select id="loadById" resultMap="User">
+        <include refid="findSelect"/>
+        where usr.id = #{id}
+        limit 1
+    </select>
+
+    <select id="findUserCount" resultType="long">
+        select count(1) from user usr
+        <include refid="listWhere"/>
+    </select>
+
+    <select id="findUserList" resultMap="User">
+        <include refid="findSelect"/>
+        <include refid="listWhere"/>
+        order by usr.id desc
+        limit #{pageIndex}, #{limit}
+    </select>
+
+    <sql id="listWhere">
+        where usr.role = 'USER'
+    </sql>
+
+    <insert id="insert" keyProperty="id">
+        INSERT INTO `user` (`name`, `email`, `password`, `role`, `phone`, `login_type`)
+        VALUES (#{name}, #{email}, #{password}, #{role}, #{phone}, #{loginType});
+    </insert>
+
+    <update id="update">
+        UPDATE `user` SET
+                          `name` = #{name},
+                          `email` = #{email},
+                          `password` = #{password},
+                          `phone` = #{phone}
+        WHERE `id` = #{id};
+    </update>
+</mapper>
