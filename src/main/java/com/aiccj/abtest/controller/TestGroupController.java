@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/test/group")
-public class TestGroupController {
+public class TestGroupController extends BaseController{
 
     @Resource
     private TestGroupService testGroupService;
@@ -28,5 +28,17 @@ public class TestGroupController {
     public Resp<PageableEntity<TestGroup>> userList(TestGroupListReq req) {
         PageableEntity<TestGroup> list = testGroupService.list(req.getPageIndex(), req.getLimit());
         return Resp.createSuccessResp(list);
+    }
+
+    @PutMapping
+    public Resp<TestGroup> create(@RequestBody TestGroup testGroup) {
+        testGroup = testGroupService.create(testGroup, getName());
+        return Resp.createSuccessResp(testGroup);
+    }
+
+    @PostMapping
+    public Resp<TestGroup> edit(@RequestBody TestGroup testGroup) {
+        testGroupService.edit(testGroup, getName());
+        return Resp.createSuccessResp(testGroup);
     }
 }

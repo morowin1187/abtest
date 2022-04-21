@@ -26,6 +26,7 @@ public enum BusinessMsg implements BusinessEnumIfc {
     MCLC0002("MCLC0002", "Incorrect password", "密码错误"),
     MCLC0003("MCLC0003", "The email is not Blank", "邮箱不能为空"),
     MCLC0004("MCLC0004", "The password is not Blank", "密码不能为空"),
+    MCLC0005("MCLC0005", "Update fail Please retry", "更新失败 请重试"),
 
     ;
 

@@ -56,7 +56,7 @@ public final class WebHandlerExceptionResolver implements HandlerExceptionResolv
         boolean loged = false;
         try {
             if (e instanceof BusinessException) {
-//                logger.info("出现业务异常: \n{}", ExceptionPrinter.exConvertToStr(e, 1));
+                logger.info("出现业务异常: \n{}", ExceptionPrinter.exConvertToStr(e, 1));
                 BusinessEnumIfc businessEnumIfc = ((BusinessException) e).getBusinessEnumIfc();
                 if (businessEnumIfc == null) {
                     logger.error("出现业务异常，但是 BusinessEnumIfc 为空！");
@@ -74,7 +74,7 @@ public final class WebHandlerExceptionResolver implements HandlerExceptionResolv
                 String defaultMessage = fieldError.getDefaultMessage();
                 BusinessEnumIfc businessEnumIfc = errorCodeMapping.get(defaultMessage);
                 if (businessEnumIfc == null) {
-//                    logger.error("参数验证失败-未收录: \n{}", ExceptionPrinter.exConvertToStr(e, 3));
+                    logger.error("参数验证失败-未收录: \n{}", ExceptionPrinter.exConvertToStr(e, 3));
                     businessEnumIfc = BusinessMsg.SYS_ERROR;
                 } else {
                     logger.error("参数验证失败: {} - {}", businessEnumIfc.getBusinessRespCode(),
@@ -83,7 +83,7 @@ public final class WebHandlerExceptionResolver implements HandlerExceptionResolv
                 writeResult(httpServletResponse, Resp.createFailResp(businessEnumIfc));
                 return new ModelAndView();
             }
-//            logger.error("收到了全局异常！\n{}", ExceptionPrinter.exConvertToStr(e, 2));
+            logger.error("收到了全局异常！\n{}", ExceptionPrinter.exConvertToStr(e, 2));
             loged = true;
 
             StringBuffer requestURL = httpServletRequest.getRequestURL();
@@ -105,7 +105,7 @@ public final class WebHandlerExceptionResolver implements HandlerExceptionResolv
         } catch (Exception exception) {
             logger.error("处理全局异常时出现错误！", exception);
             if (!loged) {
-//                logger.error("原异常信息: \n{}", ExceptionPrinter.exConvertToStr(e, 2));
+                logger.error("原异常信息: \n{}", ExceptionPrinter.exConvertToStr(e, 2));
             }
 
         }

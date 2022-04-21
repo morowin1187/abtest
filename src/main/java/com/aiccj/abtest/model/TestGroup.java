@@ -1,10 +1,12 @@
 package com.aiccj.abtest.model;
 
+import com.aiccj.abtest.common.util.DateUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -58,4 +60,25 @@ public class TestGroup {
     private Date createdAt;
 
     private Date updatedAt;
+
+    public void createCheck() {
+
+
+    }
+
+    public void createForUser(String curUserName) {
+        status = "";
+        createdAt = DateUtil.getCurTime();
+        updatedAt = DateUtil.getCurTime();
+        creator = curUserName;
+    }
+
+    public void editCheck() {
+
+    }
+
+    public void editForUser(String curUserName) {
+        updatedAt = DateUtil.getCurTime();
+        editor = curUserName;
+    }
 }

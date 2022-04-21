@@ -40,4 +40,23 @@ public class TestGroupService {
 
         return PageableEntity.pageBuilder(count, finds);
     }
+
+    @Transactional
+    public TestGroup create(TestGroup testGroup, String curUserName) {
+        testGroup.createCheck();
+        testGroup.createForUser(curUserName);
+        testGroupMapper.insert(testGroup);
+        return testGroup;
+    }
+
+    @Transactional
+    public TestGroup edit(TestGroup testGroup, String name) {
+        testGroup.editCheck();
+        testGroup.editForUser(name);
+        int i = testGroupMapper.updateByPrimaryKey(testGroup);
+        if (i<1) {
+            throw new BusinessException(BusinessMsg.MCLC0005);
+        }
+        return testGroup;
+    }
 }
